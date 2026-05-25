@@ -18,11 +18,13 @@ namespace Assignment.Models
                 OnPropertyChanged(nameof(Progress));
             }
         }
+        public double Progress
+        {
+            get => Duration > 0 ? (double)Elapsed / Duration * 100.0 : 0;
+            private set { }
+        }
 
-        public double Progress => Duration > 0
-            ? (double)Elapsed / Duration * 100.0
-            : 0;
-
+       
         public bool IsActive { get; private set; } = true;
 
         public void Cancel()

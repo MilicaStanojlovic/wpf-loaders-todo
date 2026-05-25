@@ -4,15 +4,16 @@ using System.Windows.Threading;
 using Assignment.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace Assignment.ViewModels
 {
     public class LoadersViewModel : ViewModelBase
     {
-        public IList<ThreadWorker> Threads { get; private set; }
+        public ObservableCollection<ThreadWorker> Threads { get; set; }
         private DispatcherTimer _timer;
-        public ICommand CancelCommand { get; private set; }
+        public ICommand CancelCommand { get; set; }
 
         public double TotalProgress
         {
@@ -38,7 +39,7 @@ namespace Assignment.ViewModels
             });
 
             var rng = new Random();
-            Threads = new List<ThreadWorker>
+            Threads = new ObservableCollection<ThreadWorker>
             {
                 new ThreadWorker { Duration = rng.Next(10, 51) },
                 new ThreadWorker { Duration = rng.Next(10, 51) },
