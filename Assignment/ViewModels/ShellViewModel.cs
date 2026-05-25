@@ -1,7 +1,5 @@
 ﻿using Assignment.Commands;
 using Caliburn.Micro;
-using System;
-using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Assignment.ViewModels

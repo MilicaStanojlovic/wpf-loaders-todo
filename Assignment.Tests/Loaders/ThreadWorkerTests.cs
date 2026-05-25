@@ -20,7 +20,6 @@ namespace Assignment.Tests.Loaders
         {
             // Arrange
             // Kreiraj ThreadWorker sa Duration = 50 i postavi Elapsed = 25
-            // var worker = ...
             var worker = new ThreadWorker { Duration = 50, Elapsed = 25 };
 
             // Act
@@ -37,7 +36,6 @@ namespace Assignment.Tests.Loaders
         {
             // Arrange
             // Kreiraj ThreadWorker sa Duration = 30 i postavi Elapsed = 30
-            // var worker = ...
             var worker = new ThreadWorker { Duration = 30, Elapsed = 30 };
 
             // Act
@@ -53,7 +51,6 @@ namespace Assignment.Tests.Loaders
         {
             // Arrange
             // Kreiraj ThreadWorker
-            // var worker = ...
             var worker = new ThreadWorker { Duration = 20 };
 
             // Act
