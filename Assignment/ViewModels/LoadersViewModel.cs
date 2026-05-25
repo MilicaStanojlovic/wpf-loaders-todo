@@ -1,4 +1,6 @@
-﻿using System.Windows.Threading;
+﻿using Assignment.Commands;
+using System.Windows.Input;
+using System.Windows.Threading;
 using Assignment.Models;
 using System;
 using System.Collections.Generic;
@@ -10,6 +12,7 @@ namespace Assignment.ViewModels
     {
         public IList<ThreadWorker> Threads { get; private set; }
         private DispatcherTimer _timer;
+        public ICommand CancelCommand { get; private set; }
 
         public double TotalProgress
         {
@@ -28,6 +31,12 @@ namespace Assignment.ViewModels
 
         private void Initialize()
         {
+            CancelCommand = new RelayCommand(obj =>
+            {
+                int index = int.Parse(obj.ToString());
+                Threads[index].Cancel();
+            });
+
             var rng = new Random();
             Threads = new List<ThreadWorker>
             {

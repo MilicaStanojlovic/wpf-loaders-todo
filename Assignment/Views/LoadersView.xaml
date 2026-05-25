@@ -6,7 +6,43 @@
              xmlns:local="clr-namespace:Assignment.Views" xmlns:local1="clr-namespace:Assignment.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
+        <!-- Thread 1 -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,5">
+            <Label Content="Thread progress" Width="120"/>
+            <ProgressBar Value="{Binding Threads[0].Progress}" Minimum="0" Maximum="100" Width="200" Height="20"/>
+            <Label Content="{Binding Threads[0].Progress, StringFormat={}{0:F0}%}" Width="50"/>
+            <Button Content="Cancel" Command="{Binding CancelCommand}" CommandParameter="0" Width="60" Margin="5,0"/>
+        </StackPanel>
+
+        <!-- Thread 2 -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,5">
+            <Label Content="Thread progress" Width="120"/>
+            <ProgressBar Value="{Binding Threads[1].Progress}" Minimum="0" Maximum="100" Width="200" Height="20"/>
+            <Label Content="{Binding Threads[1].Progress, StringFormat={}{0:F0}%}" Width="50"/>
+            <Button Content="Cancel" Command="{Binding CancelCommand}" CommandParameter="1" Width="60" Margin="5,0"/>
+        </StackPanel>
+
+        <!-- Thread 3 -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,5">
+            <Label Content="Thread progress" Width="120"/>
+            <ProgressBar Value="{Binding Threads[2].Progress}" Minimum="0" Maximum="100" Width="200" Height="20"/>
+            <Label Content="{Binding Threads[2].Progress, StringFormat={}{0:F0}%}" Width="50"/>
+            <Button Content="Cancel" Command="{Binding CancelCommand}" CommandParameter="2" Width="60" Margin="5,0"/>
+        </StackPanel>
+
+        <!-- Total Progress -->
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,10">
+            <Label Content="Total progress" Width="120"/>
+            <ProgressBar Value="{Binding TotalProgress}" Minimum="0" Maximum="100" Width="200" Height="20"/>
+            <Label Content="{Binding TotalProgress, StringFormat={}{0:F0}%}" Width="50"/>
+        </StackPanel>
     </Grid>
 </UserControl>
