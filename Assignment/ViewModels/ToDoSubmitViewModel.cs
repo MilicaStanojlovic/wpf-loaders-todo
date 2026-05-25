@@ -1,11 +1,7 @@
 ﻿using Assignment.Commands;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Assignment.Models;
 using System.Windows.Input;
-using System.Windows.Navigation;
 
 namespace Assignment.ViewModels
 {
@@ -36,8 +32,10 @@ namespace Assignment.ViewModels
 
         public ICommand SubmitCommand { get; private set; }
 
-        public ToDoSubmitViewModel() 
+        private readonly ToDoListViewModel _toDoListViewModel;
+        public ToDoSubmitViewModel(ToDoListViewModel toDoListViewModel) 
         {
+            _toDoListViewModel = toDoListViewModel;
             Initialize();
         }
 
@@ -49,7 +47,16 @@ namespace Assignment.ViewModels
 
         private void SubmitItem(object obj)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrWhiteSpace(ItemName)) return;
+
+            var item = new ToDoItem
+            {
+                Name = ItemName,
+                Priority = SelectedPriority
+            };
+
+            _toDoListViewModel.AddItem(item);
+            ItemName = string.Empty;
         }
     }
 }
