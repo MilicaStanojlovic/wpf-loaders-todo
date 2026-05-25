@@ -1,16 +1,15 @@
-﻿using Assignment.Commands;
+﻿using System.Windows.Threading;
 using Assignment.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Assignment.ViewModels
 {
     public class LoadersViewModel : ViewModelBase
     {
         public IList<ThreadWorker> Threads { get; private set; }
+        private DispatcherTimer _timer;
 
         public double TotalProgress
         {
@@ -48,6 +47,24 @@ namespace Assignment.ViewModels
                     }
                 };
             }
+
+            _timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
+            _timer.Tick += OnTick;
+            _timer.Start();
+
+        }
+        private void OnTick(object sender, EventArgs e)
+        {
+            bool anyActive = false;
+            foreach (var thread in Threads)
+            {
+                if (!thread.IsActive) continue;
+                anyActive = true;
+                thread.Elapsed = Math.Min(thread.Elapsed + 1, thread.Duration);
+                if (thread.Elapsed >= thread.Duration)
+                    thread.Cancel();
+            }
+            if (!anyActive) _timer.Stop();
         }
     }
 }
