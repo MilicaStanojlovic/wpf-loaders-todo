@@ -1,3 +1,4 @@
+using Assignment.ViewModels;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Assignment.Tests.Loaders
@@ -17,13 +18,11 @@ namespace Assignment.Tests.Loaders
         {
             // Arrange
             // Kreiraj LoadersViewModel
-            // var vm = new LoadersViewModel();
+            var vm = new LoadersViewModel();
 
             // Assert
             // Ocekujemo tacno 3 thread-a
-            // Assert.AreEqual(3, vm.Threads.Count);
-
-            Assert.Inconclusive("Ukloni ovu liniju i implementiraj test.");
+            Assert.AreEqual(3, vm.Threads.Count);
         }
 
         [TestMethod]
@@ -32,22 +31,20 @@ namespace Assignment.Tests.Loaders
             // Arrange
             // Kreiraj LoadersViewModel i postavi poznate vrednosti Elapsed-a na sva 3 thread-a
             // tako da im je Progress redom 40%, 60%, 80%
-            // var vm = new LoadersViewModel();
-            // vm.Threads[0].Elapsed = ...; // da bude 40%
-            // vm.Threads[1].Elapsed = ...; // da bude 60%
-            // vm.Threads[2].Elapsed = ...; // da bude 80%
+            var vm = new LoadersViewModel();
+            vm.Threads[0].Duration = 100;  vm.Threads[0].Elapsed = 40; // da bude 40%
+            vm.Threads[1].Duration = 100;  vm.Threads[1].Elapsed = 60; // da bude 60%
+            vm.Threads[2].Duration = 100;  vm.Threads[2].Elapsed = 80; // da bude 80%
 
             // Canceluj prvi thread
-            // vm.Threads[0].Cancel();
+            vm.Threads[0].Cancel();
 
             // Act
-            // double result = vm.TotalProgress;
+            double result = vm.TotalProgress;
 
             // Assert
             // TotalProgress treba biti prosek preostala dva aktivna thread-a: (60 + 80) / 2 = 70
-            // Assert.AreEqual(70.0, result);
-
-            Assert.Inconclusive("Ukloni ovu liniju i implementiraj test.");
+            Assert.AreEqual(70.0, result);
         }
 
         [TestMethod]
@@ -55,18 +52,17 @@ namespace Assignment.Tests.Loaders
         {
             // Arrange
             // Kreiraj LoadersViewModel i canceluj sva 3 thread-a
-            // var vm = new LoadersViewModel();
-            // vm.Threads[0].Cancel();
-            // vm.Threads[1].Cancel();
-            // vm.Threads[2].Cancel();
+            var vm = new LoadersViewModel();
+            vm.Threads[0].Cancel();
+            vm.Threads[1].Cancel();
+            vm.Threads[2].Cancel();
 
             // Act
-            // double result = vm.TotalProgress;
+            double result = vm.TotalProgress;
 
             // Assert
-            // Assert.AreEqual(0.0, result);
+            Assert.AreEqual(0.0, result);
 
-            Assert.Inconclusive("Ukloni ovu liniju i implementiraj test.");
         }
     }
 }
