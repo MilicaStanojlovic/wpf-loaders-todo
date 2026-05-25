@@ -12,15 +12,41 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="200"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"></RowDefinition>
-            </Grid.RowDefinitions>
 
-            <!--Submit form-->
-            <Border Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1"  Grid.Row="0" Grid.Column="1">
+            <!-- Lista To-Do stavki -->
+            <ListBox Grid.Column="0" ItemsSource="{Binding Items}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border Padding="5" Margin="2">
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Priority}" Value="1">
+                                            <Setter Property="Background" Value="Red"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Priority}" Value="2">
+                                            <Setter Property="Background" Value="Yellow"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Priority}" Value="3">
+                                            <Setter Property="Background" Value="Green"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Name}" Margin="0,0,10,0"/>
+                                <TextBlock Text="{Binding Priority, StringFormat=Priority: {0}}"/>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <!-- Submit forma -->
+            <Border Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1" Grid.Column="1">
                 <ContentControl x:Name="ToDoSubmitViewModel"/>
             </Border>
-            
+
         </Grid>
     </ContentControl>
 </UserControl>
