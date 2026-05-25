@@ -57,6 +57,7 @@ namespace Assignment.ViewModels
 
             _toDoListViewModel.AddItem(item);
             ItemName = string.Empty;
+            SelectedPriority = 0;
         }
     }
 }
