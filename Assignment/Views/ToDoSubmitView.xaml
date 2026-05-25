@@ -8,7 +8,7 @@
     <Grid>
         <StackPanel Orientation="Vertical">
             <Label Content="Name"></Label>
-            <TextBox Text="{Binding Path=ItemName, Mode=OneWayToSource}"></TextBox>
+            <TextBox Text="{Binding Path=ItemName, Mode=TwoWay}"></TextBox>
             <Label Content="Priority"></Label>
             <ComboBox ItemsSource="{Binding Priorities}" SelectedValue="{Binding Path=SelectedPriority}"/>
             <Button Content="Submit" Margin="10" Command="{Binding SubmitCommand}"></Button>

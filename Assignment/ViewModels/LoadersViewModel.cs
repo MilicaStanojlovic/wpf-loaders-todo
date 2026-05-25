@@ -3,7 +3,6 @@ using System.Windows.Input;
 using System.Windows.Threading;
 using Assignment.Models;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 

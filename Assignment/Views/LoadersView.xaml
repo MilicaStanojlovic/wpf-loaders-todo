@@ -18,7 +18,6 @@
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,5">
             <Label Content="Thread progress" Width="120"/>
             <ProgressBar Value="{Binding Threads[0].Progress, Mode=OneWay}" Minimum="0" Maximum="100" Width="200" Height="20"/>
-            <!--<Label Content="{Binding Threads[0].Progress, StringFormat={}{0:F0}%}" Width="50"/>-->
             <TextBlock Text="{Binding Threads[0].Progress, StringFormat={}{0:F0}%}" Width="50"/>
             <Button Content="Cancel" Command="{Binding CancelCommand}" CommandParameter="0" Width="60" Margin="5,0"/>
         </StackPanel>
